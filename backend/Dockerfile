@@ -1,14 +1,20 @@
-FROM openjdk:17
+FROM openjdk:17-slim
 WORKDIR /app
 
-# Copiar todo el proyecto
-COPY . .
+# Instalar utilidades necesarias
+RUN apt-get update && apt-get install -y unzip curl
 
-# Dar permisos al wrapper de Maven
-RUN chmod +x ./mvnw
+# Mostrar versiones útiles en tiempo de build (opcional)
+RUN java -version && curl --version
 
-# Exponer el puerto
+# Copiar todo el código del proyecto
+#COPY . .
+
+# Asegurar permisos para usar el Maven Wrapper
+#RUN chmod +x ./mvnw
+
+# Exponer el puerto donde correrá Spring Boot
 EXPOSE 8080
 
-# Comando para levantar Spring Boot en modo desarrollo
-CMD ["./mvnw", "spring-boot:run"]
+# Ejecutar Spring Boot en modo dev (con devtools activo)
+#CMD ["./mvnw", "spring-boot:run"]

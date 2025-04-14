@@ -16,7 +16,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: devops2025
     depends_on:
       - db
-    command: ./mvnw spring-boot:run
+    # command: ./mvnw spring-boot:run
+    command: tail -f /dev/null
 
   frontend:
     build:
@@ -27,7 +28,8 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    command: npm run start
+    # command: npm run start
+    command: tail -f /dev/null
 
   db:
     image: postgres:15
