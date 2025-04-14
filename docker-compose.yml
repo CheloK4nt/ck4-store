@@ -1,0 +1,60 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: ck4-backend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./backend:/app
+      - /app/target
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ck4store
+      SPRING_DATASOURCE_USERNAME: chelok4nt
+      SPRING_DATASOURCE_PASSWORD: devops2025
+    depends_on:
+      - db
+    # command: ./mvnw spring-boot:run
+    command: tail -f /dev/null
+
+  frontend:
+    build:
+      context: ./frontend
+    container_name: ck4-frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    # command: npm run start
+    command: tail -f /dev/null
+
+  db:
+    image: postgres:15
+    container_name: ck4-db
+    restart: always
+    environment:
+      POSTGRES_DB: ck4store
+      POSTGRES_USER: chelok4nt
+      POSTGRES_PASSWORD: devops2025
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: ck4-pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@ck4.dev
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres-data:
