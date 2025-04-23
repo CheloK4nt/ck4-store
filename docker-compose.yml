@@ -28,8 +28,8 @@ services:
     volumes:
       - ./frontend:/app
       - /app/node_modules
-    # command: npm run start
-    command: tail -f /dev/null
+    command: npm run start
+    # command: tail -f /dev/null
 
   db:
     image: postgres:15
