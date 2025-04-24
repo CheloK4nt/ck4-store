@@ -20,7 +20,10 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // deshabilita CSRF (opcional para APIs REST)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll() // permite el login sin auth
+                        .requestMatchers(
+                            "/api/auth/login",
+                            "/"
+                        ).permitAll() // permite el login sin auth
                         .anyRequest().authenticated() // el resto requiere autenticación
                 );
         return http.build();
