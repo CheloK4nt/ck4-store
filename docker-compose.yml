@@ -10,6 +10,7 @@ services:
     volumes:
       - ./backend:/app
       - /app/target
+      - ~/.m2:/root/.m2
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/ck4store
       SPRING_DATASOURCE_USERNAME: chelok4nt

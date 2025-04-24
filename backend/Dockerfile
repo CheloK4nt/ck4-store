@@ -13,6 +13,9 @@ COPY . .
 # Asegurar permisos para usar el Maven Wrapper
 RUN chmod +x ./mvnw
 
+# Instalar dependencias al construir la imagen
+RUN ./mvnw clean install -DskipTests
+
 # Exponer el puerto donde correrá Spring Boot
 EXPOSE 8080
 
