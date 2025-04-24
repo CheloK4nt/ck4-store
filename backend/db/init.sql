@@ -13,6 +13,6 @@ CREATE TABLE IF NOT EXISTS usuarios (
 -- Usuarios de prueba
 INSERT INTO usuarios (email, password, nombre, rol)
 VALUES 
-  ('admin@ck4.dev', '1234', 'Administrador', 'ADMIN'),
-  ('usuario@ck4.dev', '1234', 'Usuario Normal', 'USER')
+  ('admin@ck4.dev', '$2a$10$xWWwHpAzh8iE1SAC45bnz./ABTatU7msAEokFSsCTjeHdpv9OmBMq', 'Administrador', 'ADMIN'),
+  ('usuario@ck4.dev', '$2a$10$xWWwHpAzh8iE1SAC45bnz./ABTatU7msAEokFSsCTjeHdpv9OmBMq', 'Usuario Normal', 'USER')
 ON CONFLICT DO NOTHING;
