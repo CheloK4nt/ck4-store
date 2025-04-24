@@ -8,14 +8,14 @@ RUN npm install -g @angular/cli@17.3.10
 RUN node -v && npm -v && ng version
 
 # Copiar e instalar dependencias
-# COPY package*.json ./
-# RUN npm install
+COPY package*.json ./
+RUN npm install
 
 # Copiar el resto del proyecto
-# COPY . .
+COPY . .
 
 # Exponer el puerto
 EXPOSE 4200
 
 # Comando para desarrollo con live reload
-# CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start"]
